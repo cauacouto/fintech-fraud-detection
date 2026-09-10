@@ -1,5 +1,7 @@
 package com.example.account.service.service;
 
+import com.example.account.service.Enums.StatusTranfer;
+import com.example.account.service.Enums.TipoPagamento;
 import com.example.account.service.domin.Conta;
 import com.example.account.service.domin.Transfer;
 import com.example.account.service.dto.ContaDto;
@@ -37,7 +39,7 @@ public class ContaService {
         eventPublish.publishEvent(conta);
     }
 
-    public void transferir(UUID idContaDestino,UUID idCotanOrigem, BigDecimal valor){
+    public void transferir(UUID idContaDestino, UUID idCotanOrigem, BigDecimal valor, TipoPagamento tiPagamento){
 
         Transfer transfer = new Transfer();
         log.info("Iniciando transferencia: origem={}, destino={}, valor={}"
@@ -45,6 +47,8 @@ public class ContaService {
 
         transfer.setIdOrigem(idCotanOrigem);
         transfer.setIdDestino(idContaDestino);
+        transfer.setTipo(tiPagamento);
+        transfer.setStatusTranfer(StatusTranfer.PEDENDE);
         transfer.setRealizadaEm(Instant.now());
         transfer.setValor(valor);
 
