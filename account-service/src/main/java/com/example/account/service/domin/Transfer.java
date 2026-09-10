@@ -16,6 +16,9 @@ public class Transfer {
 
     @Id
     private UUID uuid;
+    private UUID idOrigem;
+    private UUID idDestino;
     private BigDecimal valor;
+    private
     private Instant  realizadaEm;
 }
