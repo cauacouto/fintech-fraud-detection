@@ -1,5 +1,7 @@
 package com.example.account.service.domin;
 
+import com.example.account.service.Enums.StatusTranfer;
+import com.example.account.service.Enums.TipoPagamento;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -19,6 +21,7 @@ public class Transfer {
     private UUID idOrigem;
     private UUID idDestino;
     private BigDecimal valor;
-    private
+    private StatusTranfer statusTranfer;
+    private TipoPagamento tipo;
     private Instant  realizadaEm;
 }
