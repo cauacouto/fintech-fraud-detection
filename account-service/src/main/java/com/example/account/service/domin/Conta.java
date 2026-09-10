@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ public class Conta {
     private UUID uuid;
     private String titular;
     private String cpf;
+    private BigDecimal saldo;
     private LocalDate dataNascimento;
     @Enumerated(EnumType.STRING)
     private TipoConta tipoConta;
