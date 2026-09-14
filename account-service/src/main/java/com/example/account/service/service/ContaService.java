@@ -1,13 +1,13 @@
 package com.example.account.service.service;
 
 import com.example.account.service.Enums.StatusTranfer;
-import com.example.account.service.Enums.FormaPagamento;
 import com.example.account.service.Mapper.ContaMapper;
 import com.example.account.service.domin.Conta;
 import com.example.account.service.domin.Transfer;
 import com.example.account.service.dto.ContaDto;
 import com.example.account.service.dto.ContaDtoResponse;
 import com.example.account.service.dto.TranferDto;
+import com.example.account.service.dto.VerificarContaDto;
 import com.example.account.service.producer.EventPublish;
 import com.example.account.service.repository.ContaRepository;
 import com.example.account.service.repository.TransferRepository;
@@ -38,7 +38,7 @@ public class ContaService {
         Conta conta = mapper.toEntity(dto);
         conta.setSaldo(BigDecimal.ZERO);
         repository.save(conta);
-        eventPublish.publishEvent(conta);
+        eventPublish.ContaProducer(conta);
         return mapper.toDto(conta);
 
 
@@ -66,7 +66,7 @@ public class ContaService {
         Transfer transfer = new Transfer();
         log.info("Iniciando transferencia: origem={}, destino={}, valor={}"
                 ,idCotanOrigem,idContaDestino,tranferDto.valor());
-       transfer.setUuid(UUID.randomUUID().toString());
+        transfer.setUuid(UUID.randomUUID().toString());
         transfer.setIdOrigem(UUID.randomUUID().toString());
         transfer.setIdDestino(UUID.randomUUID().toString());
         transfer.setTipo(tranferDto.formaPagamento());
@@ -117,6 +117,17 @@ public class ContaService {
                 tranferDto.valor()
         );
 
+    }
+
+    public VerificarContaDto verificarConta(UUID id){
+        Conta conta = repository.findById(id)
+                .orElseThrow(()-> new RuntimeException("conta não encontrada"));
+        VerificarContaDto dto = new VerificarContaDto(
+                conta.getTitular(),
+                conta.getSaldo(),
+                conta.getTipoConta()
+        );
+        return dto;
     }
 
 
