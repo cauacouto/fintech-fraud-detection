@@ -15,7 +15,7 @@ public class EventPublish {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void publishEvent(Conta conta){
+    public void ContaProducer(Conta conta){
 
         AccontCreatEventDto event = new AccontCreatEventDto(
                 conta.getId(),
