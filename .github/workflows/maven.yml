@@ -33,7 +33,8 @@ jobs:
     - name: permissao maven
       run: chmod +x mvnw
 
-    - name: build
-      run:  cd account-service
+    - name: Build
+      run: |
+        cd account-service
         chmod +x mvnw
-       ./mvnw clean package -Dspring.profiles.active=test -DskipTests
+        ./mvnw clean package -Dspring.profiles.active=test -DskipTests
