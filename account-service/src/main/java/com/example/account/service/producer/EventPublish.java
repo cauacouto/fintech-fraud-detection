@@ -17,7 +17,7 @@ public class EventPublish {
 
     public void publishEvent(Conta conta){
 
-        AccontCreatEvent event = new AccontCreatEvent(
+        AccontCreatEventDto event = new AccontCreatEventDto(
                 conta.getId(),
                 conta.getTitular(),
                 conta.getCpf(),
