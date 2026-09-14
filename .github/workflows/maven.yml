@@ -35,4 +35,4 @@ jobs:
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: build
-      run: ./mvnw clean package -Dspring.profiles.active=teste -DskipTests 
+      run: ./mvnw clean package -Dspring.profiles.active=test -DskipTests
