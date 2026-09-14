@@ -69,7 +69,7 @@ public class ContaService {
         transfer.setUuid(UUID.randomUUID().toString());
         transfer.setIdOrigem(UUID.randomUUID().toString());
         transfer.setIdDestino(UUID.randomUUID().toString());
-        transfer.setTipo(tranferDto.formaPagamento());
+        transfer.setFormaPagamento(tranferDto.formaPagamento());
         transfer.setStatusTranfer(StatusTranfer.PEDENDE);
         transfer.setRealizadaEm(Instant.now());
         transfer.setValor(tranferDto.valor());
@@ -110,6 +110,8 @@ public class ContaService {
         repository.save(contaDestino);
 
         transferRepository.save(transfer);
+
+        eventPublish.TranfereciaProducer(transfer);
         log.info(
                 "Transferência realizada com sucesso: origem={}, destino={}, valor={}",
                 idCotanOrigem,
