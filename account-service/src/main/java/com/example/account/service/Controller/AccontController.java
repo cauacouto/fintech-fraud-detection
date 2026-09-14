@@ -35,9 +35,10 @@ public class AccontController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{idDestino}/{idOrigem}")
-    public ResponseEntity<Void> transferir(@PathVariable UUID idDestino,
-                                           @PathVariable UUID idOrigem,
+    @PostMapping("/{idOrigem}/{idDestino}")
+    public ResponseEntity<Void> transferir(@PathVariable UUID idOrigem,
+                                           @PathVariable UUID idDestino,
+
                                            @RequestBody TranferDto tranferDto){
         this.service.transferir(idDestino,idOrigem,tranferDto);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
