@@ -22,6 +22,6 @@ public class Transfer {
     private String idDestino;
     private BigDecimal valor;
     private StatusTranfer statusTranfer;
-    private FormaPagamento tipo;
+    private FormaPagamento formaPagamento;
     private Instant  realizadaEm;
 }
