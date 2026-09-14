@@ -4,6 +4,7 @@ import com.example.account.service.Enums.FormaPagamento;
 import com.example.account.service.dto.ContaDto;
 import com.example.account.service.dto.ContaDtoResponse;
 import com.example.account.service.dto.TranferDto;
+import com.example.account.service.dto.VerificarContaDto;
 import com.example.account.service.service.ContaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,13 @@ public class AccontController {
                                            @RequestBody TranferDto tranferDto){
         this.service.transferir(idDestino,idOrigem,tranferDto);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<VerificarContaDto>vericarConta(@PathVariable UUID id){
+        VerificarContaDto verificarResponse = service.verificarConta(id);
+        return ResponseEntity.ok().body(verificarResponse);
+
     }
 
 }
