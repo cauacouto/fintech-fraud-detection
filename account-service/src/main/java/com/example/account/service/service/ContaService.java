@@ -66,9 +66,9 @@ public class ContaService {
         Transfer transfer = new Transfer();
         log.info("Iniciando transferencia: origem={}, destino={}, valor={}"
                 ,idCotanOrigem,idContaDestino,tranferDto.valor());
-
-        transfer.setIdOrigem(idCotanOrigem);
-        transfer.setIdDestino(idContaDestino);
+       transfer.setUuid(UUID.randomUUID().toString());
+        transfer.setIdOrigem(UUID.randomUUID().toString());
+        transfer.setIdDestino(UUID.randomUUID().toString());
         transfer.setTipo(tranferDto.formaPagamento());
         transfer.setStatusTranfer(StatusTranfer.PEDENDE);
         transfer.setRealizadaEm(Instant.now());
