@@ -17,9 +17,9 @@ import java.util.UUID;
 public class Transfer {
 
     @Id
-    private UUID uuid;
-    private UUID idOrigem;
-    private UUID idDestino;
+    private String uuid;
+    private String idOrigem;
+    private String idDestino;
     private BigDecimal valor;
     private StatusTranfer statusTranfer;
     private FormaPagamento tipo;
