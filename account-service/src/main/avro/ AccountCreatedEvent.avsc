@@ -1,0 +1,39 @@
+{
+  "type": "record",
+  "name": "AccountCreatedEvent",
+  "namespace": "com.account.service",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "titular",
+      "type": "string"
+    },
+    {
+      "name": "cpf",
+      "type": "string"
+    },
+    {
+      "name": "dataNascimento",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "tipoConta",
+      "type": {
+        "type": "enum",
+        "name": "TipoConta",
+        "symbols": [
+          "CORRENTE",
+          "POUPANCA",
+          "JURIDICA",
+          "UNIVERSITARIA"
+        ]
+      }
+    }
+  ]
+}
