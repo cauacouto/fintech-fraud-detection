@@ -24,7 +24,7 @@ public class ProduceKafkaConfigConta {
     @Value("${spring.kafka.properties.schema.registry.url}")
     private String schemaRegistry;
 
-    @Bean()
+    @Bean("accountProducerFactory")
     public ProducerFactory<String, AccountCreatedEvent> producerFactory(){
 
         Map<String,Object> configProps = new HashMap<>();
