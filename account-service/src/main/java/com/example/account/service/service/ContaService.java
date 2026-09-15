@@ -8,7 +8,8 @@ import com.example.account.service.dto.ContaDto;
 import com.example.account.service.dto.ContaDtoResponse;
 import com.example.account.service.dto.TranferDto;
 import com.example.account.service.dto.VerificarContaDto;
-import com.example.account.service.producer.EventPublish;
+import com.example.account.service.producer.EventPublishConta;
+import com.example.account.service.producer.EventPublishTranfer;
 import com.example.account.service.repository.ContaRepository;
 import com.example.account.service.repository.TransferRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -23,22 +24,24 @@ import java.util.UUID;
 public class ContaService {
 
     private final ContaRepository repository;
-    private final EventPublish eventPublish;
+    private final EventPublishConta eventPublishConta;
     private final TransferRepository transferRepository;
     private final ContaMapper mapper;
+    private final EventPublishTranfer eventPublishTranfer;
 
-    public ContaService(ContaRepository repository, EventPublish eventPublish, TransferRepository transferRepository, ContaMapper mapper) {
+    public ContaService(ContaRepository repository, EventPublishConta eventPublishConta, TransferRepository transferRepository, ContaMapper mapper, EventPublishTranfer eventPublishTranfer) {
         this.repository = repository;
-        this.eventPublish = eventPublish;
+        this.eventPublishConta = eventPublishConta;
         this.transferRepository = transferRepository;
         this.mapper = mapper;
+        this.eventPublishTranfer = eventPublishTranfer;
     }
 
     public ContaDtoResponse Criaconta(ContaDto dto){
         Conta conta = mapper.toEntity(dto);
         conta.setSaldo(BigDecimal.ZERO);
         repository.save(conta);
-        eventPublish.ContaProducer(conta);
+        eventPublishConta.ContaProducer(conta);
         return mapper.toDto(conta);
 
 
@@ -111,7 +114,7 @@ public class ContaService {
 
         transferRepository.save(transfer);
 
-        eventPublish.TranfereciaProducer(transfer);
+        eventPublishTranfer.TranfereciaProducer(transfer);
         log.info(
                 "Transferência realizada com sucesso: origem={}, destino={}, valor={}",
                 idCotanOrigem,
