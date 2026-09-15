@@ -24,7 +24,7 @@ public class ProduceKafkaConfigTransfer {
     @Value("${spring.kafka.properties.schema.registry.url}")
     private String schemaRegistry;
 
-    @Bean()
+    @Bean("transferProducerFactory")
     public ProducerFactory<String, TransferEvent> producerFactory(){
         Map<String,Object> configProps = new HashMap<>();
 
